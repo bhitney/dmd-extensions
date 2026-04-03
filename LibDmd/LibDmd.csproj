@@ -524,6 +524,8 @@
     <Compile Include="Input\MemoryGrabberBase.cs" />
     <Compile Include="Input\PinballFX\PinballFX3MemoryGrabber.cs" />
     <Compile Include="Input\PinballFX\PinballFX3Grabber.cs" />
+    <Compile Include="Input\PinballFX\PinballFXClassicMemoryGrabber.cs" />
+    <Compile Include="Input\PinballFX\PinballFXClassicGrabber.cs" />
     <Compile Include="Input\PinballFX\PinballFX2Grabber.cs" />
     <Compile Include="Input\Passthrough\PassthroughAlphaNumericSource.cs" />
     <Compile Include="Input\Passthrough\PassthroughRgb24Source.cs" />
