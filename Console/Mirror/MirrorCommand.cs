@@ -82,6 +82,18 @@ namespace DmdExt.Mirror
 					break;
 				}
 
+				case SourceType.PinballFXClassic: {
+					if (_options.FxClassicGrabScreen) {
+						reportingTags.Add("In:PinballFXClassicLegacy");
+						Analytics.Instance.SetSource("Pinball FX Classic (legacy)");
+						graphs.Add(CreateGraph(new PinballFXClassicGrabber { FramesPerSecond = _options.FramesPerSecond }, "Pinball FX Classic (legacy) Render Graph", reportingTags));
+					} else {
+						reportingTags.Add("In:PinballFXClassic"); // analytics done when game name is known
+						graphs.Add(CreateGraph(new PinballFXClassicMemoryGrabber { FramesPerSecond = _options.FramesPerSecond }, "Pinball FX Classic Render Graph", reportingTags));
+					}
+					break;
+				}
+
 				case SourceType.PinballArcade: {
 					reportingTags.Add("In:PinballArcade"); // analytics done when game name is known
 					var tpaGrabber = new TPAGrabber { FramesPerSecond = _options.FramesPerSecond };

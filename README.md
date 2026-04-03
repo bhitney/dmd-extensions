@@ -21,6 +21,7 @@ comes with pretty monitor output, supports frame-by-frame colorization, and can 
   - [Test](#test)
   - [Pinball FX2](#pinball-fx2)
   - [Pinball FX3](#pinball-fx3)
+  - [Pinball FX Classic](#pinball-fx-classic)
   - [Pinball FX](#pinball-fx)
   - [The Pinball Arcade](#the-pinball-arcade)
   - [Pro Pinball Ultra](#pro-pinball-ultra)
@@ -63,6 +64,7 @@ DMD Extensions adds real DMD support to the following games:
 
 - [**Pinball FX2**](#pinball-fx2) through frame grabbing from screen
 - [**Pinball FX3**](#pinball-fx3) by reading the DMD texture data from memory
+- [**Pinball FX Classic**](#pinball-fx-classic) by reading the DMD texture data from memory
 - [**Pinball FX**](#pinball-fx) by officially supporting `DmdDevice.dll` (thanks, Zen!) 
 - [**The Pinball Arcade**](#the-pinball-arcade) by Farsight, through grabbing the DMD texture from memory
 - [**Pro Pinball Timeshock**](#pro-pinball-ultra) through their message queue
@@ -208,6 +210,22 @@ Note that while the current memory grabber code should also work for future
 Pinball FX3 versions, we obviously can't guarantee it. If a new version breaks
 `dmdext`, you should still be able to fall back to the legacy screen grabber
 that is used by Pinball FX2 by using the `--fx3-legacy` flag.
+
+### Pinball FX Classic
+
+The DMD from Pinball FX Classic is pulled directly from the memory.
+
+1. Open a command line prompt ([Windows], type `cmd`, [enter])
+2. Type `dmdext mirror --source=pinballfxclassic --no-virtual` [enter]
+3. Start Pinball FX Classic and play a game.
+
+It doesn't matter whether Pinball FX Classic is started before or after `dmdext`, and
+it works with or without cabinet mode.
+
+Note that while the current memory grabber code should also work for future
+Pinball FX Classic versions, we obviously can't guarantee it. If a new version breaks
+`dmdext`, you should still be able to fall back to the legacy screen grabber
+that is used by Pinball FX2 by using the `--fxclassic-legacy` flag.
 
 ### Pinball FX
 
@@ -468,7 +486,7 @@ The `mirror` command has the following additional parameters:
 
 | Parameter           | Description                                                                                                                                                                     | Default    |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
-| `-s, --source`      | Required. The source you want to retrieve DMD data from. One of: [ `pinballfx2`, `pinballfx3`, `pinballarcade`, `propinball`, `futurepinball`, `screen` ].                      | *n/a*      |
+| `-s, --source`      | Required. The source you want to retrieve DMD data from. One of: [ `pinballfx2`, `pinballfx3`, `pinballfxclassic`, `pinballarcade`, `propinball`, `futurepinball`, `screen` ].  | *n/a*      |
 | `-f, --fps`         | How many frames per second should be mirrored.                                                                                                                                  | 25         |
 | `--idle-after`      | Wait for number of milliseconds until clearing the screen. Disable with 0.                                                                                                      | 0          |
 | `--idle-play`       | Play this file while idleing instead of blank screen. Supported formats: JPG, PNG, GIF. Animated GIFs are supported.                                                            | *none*     |
@@ -477,7 +495,8 @@ The `mirror` command has the following additional parameters:
 | `--grid-spacing`    | *screen* - How much of the white space around the dot should be cut off (grid size is defined by --resize-to). 1 means same size as the dot, 0.5 half size, etc. 0 for disable. | 0          |
 | `--propinball-args` | *propinball* - Arguments send from the Pro Pinball master process. Usually something like: `ndmd w0_0_0_0_w m392`. Will be set automatically when called through Pro Pinball.   |            |
 | `--fx3-legacy`      | *pinballfx3* - If set, don't use the memory grabber but the legacy screen grabber, like Pinball FX2.                                                                            | false      |
-| `--colorize`        | Enable or disable frame-by-frame colorization. Supported on `pinballfx3` (memory grabber) and `pinballarcade`.                                                                  | false      |
+| `--fxclassic-legacy` | *pinballfxclassic* - If set, don't use the memory grabber but the legacy screen grabber, like Pinball FX2.                                                                     | false      |
+| `--colorize`        | Enable or disable frame-by-frame colorization. Supported on `pinballfx3`, `pinballfxclassic` (memory grabber) and `pinballarcade`.                                              | false      |
 
 #### Play Command
 

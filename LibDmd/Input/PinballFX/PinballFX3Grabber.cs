@@ -6,7 +6,7 @@
 
 		protected override string GetProcessName()
 		{
-			return "Pinball FX Classic";
+			return "PinballFX3";
 		}
 	}
 }
